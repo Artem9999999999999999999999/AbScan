@@ -6,7 +6,7 @@
 ## Структура репозитория
 data/ - папка с исходными данными
 
-get_data_for_research/ - папка с кодом для извлечения данных: sabdab => fasta => json => txt
+get_data_for_research/ - папка с кодом для извлечения данных: sabdab(scv) => fasta => json => txt
 
 README.md - файл с описанием проекта
 
