@@ -6,6 +6,8 @@
 ## Структура репозитория
 data/ - папка с исходными данными
 
+/Файл "sabdab_summary_all_tsv" из базы данных "sabdab" содержит актуальную информацию на 6 марта. Файл sabdab_data_pdb_id.csv был получен путем удаления всех колонок, кроме pdb_id и информации о тяжелой и легкой цепях из "sabdab_summary_all_tsv", далее был конвертирован в CSV. Подробную информацию о структуре "sabdab_summary_all_tsv" можно посмотреть по адресу https://opig.stats.ox.ac.uk/webapps/newsabdab/sabdab/about/.
+
 get_data_for_research/ - папка с кодом для извлечения данных: sabdab(scv) => fasta => json | txt
 
 README.md - файл с описанием проекта
