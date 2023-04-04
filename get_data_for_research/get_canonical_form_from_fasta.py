@@ -1,8 +1,10 @@
 import json
 import subprocess
+import os
 
+output_folder = "/home/artem9/Рабочий стол/NIR/data"
 # Задаем аргументы для вызова SCALOP
-args = ["SCALOP", "-i", "all_sequences_from_sabdab.fasta", "--numbering_scheme", "chothia"]
+args = ["SCALOP", "-i", "all_sequences_from_sabdab.fasta", "--numbering_scheme", "chothia", "--cdr_definition", "chothia"]
 
 # Вызываем SCALOP и получаем результаты
 try:
@@ -28,7 +30,8 @@ for line in output.stdout.split("\n")[1:]:
         new_entry = {
             "pdb": input_id,
             "cdr": cdr_id,
-            "cdr_sequence": cdr_sequence
+            "cdr_sequence": cdr_sequence,
+            "median": median_id
         }
 
         # Добавляем новый элемент в словарь
@@ -37,5 +40,7 @@ for line in output.stdout.split("\n")[1:]:
         json_data[canonical_id].append(new_entry)
 
 # Записываем результат
-with open("cannonical_form_of_all_cdr_sequences.json", "w") as f:
+with open(os.path.join(output_folder,"cannonical_form_of_all_cdr_sequences_and_mediany6.json"), "w") as f:
     json.dump(json_data, f, indent=4)
+
+
