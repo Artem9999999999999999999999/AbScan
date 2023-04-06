@@ -34,9 +34,9 @@ Obtain the canonical form and frequencies of amino acids present in the antibody
 Retrieve the frequency data for a specific CDR sequence and its corresponding canonical form.
 CAUTION! Please ensure that the local version of SCALOP is installed on your device and has been added to the PATH variable.
 
-Please enter 1 or 2: 2
+Please enter 1 or 2: 1
 
-Please enter the canonical form and CDR sequence, separated by a space: H1-7-A RIDPEDGGTK
+Please enter the amino acid sequence: VMTQTPSPVSAAVGGTVSISCQSSKSVHNENFLSWYQQKPGQRPKLLIYRASTLASGVPSRFKGSGSGTQFTLTISDVQCDDAATYYCAGGDIQSSDDVFGGGTEVV
 
 ## Second Example Input
 Greetings, user. How may I assist you today?
@@ -45,9 +45,9 @@ Obtain the canonical form and frequencies of amino acids present in the antibody
 Retrieve the frequency data for a specific CDR sequence and its corresponding canonical form.
 CAUTION! Please ensure that the local version of SCALOP is installed on your device and has been added to the PATH variable.
 
-Please enter 1 or 2: 1
+Please enter 1 or 2: 2
 
-Please enter the amino acid sequence: VMTQTPSPVSAAVGGTVSISCQSSKSVHNENFLSWYQQKPGQRPKLLIYRASTLASGVPSRFKGSGSGTQFTLTISDVQCDDAATYYCAGGDIQSSDDVFGGGTEVV
+Please enter the canonical form and CDR sequence, separated by a space: H1-7-A RIDPEDGGTK
 
 README.md - файл с описанием проекта
 
