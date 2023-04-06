@@ -35,9 +35,13 @@ try:
         else:
             print(f"В позиции {k} аминокислота {seq[k - 1]} имеет частоту {v}%")
 
-    if seq_len > len(data[family]):
+    if seq_len > len(data[family][0]):
         print()
-        print(f"Для аминокислот в позициях с {len(data[family][0])+1} по {seq_len} информации нет, скорее всего с вашей CDR что-то не так =(")
+        if seq_len == len(data[family][0]) + 1:
+            print(f"Для аминокислоты в позиции {len(data[family][0]) + 1} информации нет, скорее всего с вашей CDR что-то не так =(")
+        else:
+            print(f"Для аминокислот в позициях с {len(data[family][0])+1} по {seq_len} информации нет, скорее всего с вашей CDR что-то не так =(")
 
 except KeyError:
     print("Ошибка: ключ не найден.")
+
