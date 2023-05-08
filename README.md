@@ -18,38 +18,35 @@ data/freq_aa_in_canonical_form/ - здесь лежит json-файл со вс�
 get_data_for_research/ - папка с кодом для извлечения данных: sabdab(scv) => fasta => json | txt
 
 ## Получаем частоты
-get_freq.py - Данный скрипт позволяет получить информацию о канонической форме и частотах аминокислот, присутствующих в последовательности антитела. Для этого используется файл с данными о частотах аминокислот в канонических формах.
+get_freq.py - Данный скрипт позволяет получить информацию о канонической форме и частотах аминокислот, присутствующих в последовательности антитела. Для этого используется файл с данными о частотах аминокислот в канонических формах. Для этого используется локальная версия SCALOP, которая должна быть установлена на компьютере и добавлена в переменную PATH.
 
-Также предоставляется возможность получить данные о частотах аминокислот для определенной последовательности CDR (complementarity-determining region) и соответствующей ей канонической формы. Для этого используется локальная версия SCALOP, которая должна быть установлена на компьютере и добавлена в переменную PATH.
+usage: all_plus_mutant.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY]
+                          [-m] [-o OUTPUT]
 
-После запуска предлагается выбрать один из двух режимов работы - 1 или 2. При выборе первого режима, пользователь должен ввести последовательность аминокислот, для которой необходимо получить каноническую форму и частоты аминокислот. При выборе второго режима, пользователь должен ввести каноническую форму и последовательность CDR, для которой необходимо получить частоты аминокислот.
+Retrieve the canonical form and/or frequencies of amino acids in an antibody
+sequence. To work with the amino acid sequence, you must have a local version
+of SCALOP installed on your device and a PATH defined. if the chain parameter
+is not specified, then the canonical family will be determined using
+alignment. Otherwise, the family will be defined with SCALOP
 
-После выполнения на экран будет выведена информация о канонической форме, частотах аминокислот в последовательности CDR, а также информация о частотах аминокислот для каждой позиции CDR. Если для некоторой позиции CDR информация о частотах отсутствует, программа выведет список аминокислот, которые встречаются в этой позиции, а также их частоты в других канонических формах.
+options:
+  -h, --help            show this help message and exit
+  -s SEQUENCE, --sequence SEQUENCE
+                        amino acid sequence for which the canonical form and
+                        frequencies will be obtained
+  -c CDR, --cdr CDR     CDR sequence for which frequency data and its
+                        corresponding canonical form will be retrieved
+  -n NUMBER, --number NUMBER
+                        the number of alternative amino acids to display
+                        (default=3)
+  -f FAMILY, --family FAMILY
+                        enter the name of the circuit, the possible options
+                        are: L1, L2, L3, H1, H2
+  -m, --mutant          Search for mutations that do not affect the canonical
+                        form
+  -o OUTPUT, --output OUTPUT
+                        File name for writing results
 
-
-## First Example Input
-Greetings, user. How may I assist you today?
-
-Obtain the canonical form and frequencies of amino acids present in the antibody sequence.
-Retrieve the frequency data for a specific CDR sequence and its corresponding canonical form.
-CAUTION! Please ensure that the local version of SCALOP is installed on your device and has been added to the PATH variable.
-
-Please enter 1 or 2: 1
-
-Please enter the amino acid sequence: VMTQTPSPVSAAVGGTVSISCQSSKSVHNENFLSWYQQKPGQRPKLLIYRASTLASGVPSRFKGSGSGTQFTLTISDVQCDDAATYYCAGGDIQSSDDVFGGGTEVV
-
-## Second Example Input
-Greetings, user. How may I assist you today?
-
-Obtain the canonical form and frequencies of amino acids present in the antibody sequence.
-Retrieve the frequency data for a specific CDR sequence and its corresponding canonical form.
-CAUTION! Please ensure that the local version of SCALOP is installed on your device and has been added to the PATH variable.
-
-Please enter 1 or 2: 2
-
-Please enter the canonical form and CDR sequence, separated by a space: H1-7-A RIDPEDGGTK
-
-README.md - файл с описанием проекта
 
 ## Контакты
 manasanartem4@gmail.com
