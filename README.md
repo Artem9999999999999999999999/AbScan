@@ -29,38 +29,35 @@ get_data_for_research/ - folder with data extraction code: sabdab(scv) => fasta 
 /src - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (AbScan/data
 /median_and_frequency_data/) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
 ```
-usage: AbScan.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY]
-                          [-m] [-o OUTPUT]
+usage: abscan_run.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m] [-i INPUT] [-o OUTPUT] [-v]
 
-Retrieve the canonical form and/or frequencies of amino acids in an antibody
-sequence. To work with the amino acid sequence, you must have a local version
-of SCALOP installed on your device and a PATH defined. if the chain parameter
-is not specified, then the canonical family will be determined using
-alignment. Otherwise, the family will be defined with SCALOP
+Retrieve the canonical form and/or frequencies of amino acids in an antibody sequence. To work with the amino acid sequence, you must have a local version of SCALOP installed on your device and a PATH
+defined. if the chain parameter is not specified, then the canonical family will be determined using alignment. Otherwise, the family will be defined with SCALOP
 
 options:
   -h, --help            show this help message and exit
   -s SEQUENCE, --sequence SEQUENCE
-                        amino acid sequence for which the canonical form and
-                        frequencies will be obtained
-  -c CDR, --cdr CDR     CDR sequence for which frequency data and its
-                        corresponding canonical form will be retrieved
+                        Amino acid sequence for which the canonical form and frequencies will be obtained
+  -c CDR, --cdr CDR     CDR sequence for which frequency data and its corresponding canonical form will be retrieved
   -n NUMBER, --number NUMBER
-                        the number of alternative amino acids to display
-                        (default=3)
+                        The number of alternative amino acids to display (default=3)
   -f FAMILY, --family FAMILY
-                        enter the name of the circuit, the possible options
-                        are: L1, L2, L3, H1, H2
-  -m, --mutant          Search for mutations that do not affect the canonical
-                        form
+                        Path to csv file containing one sequence column or two sequence and circuit, the possible options are: L1, L2, L3, H1, H2
+  -m, --mutant          Search for mutations that do not affect the canonical form
+  -i INPUT, --input INPUT
+                        File name/path for reading. The file must be in csv format, either with one sequence column, or with two sequence and chaine,the possible options for chain are: L1, L2, L3, H1,
+                        H2
   -o OUTPUT, --output OUTPUT
-                        File name for writing results
+                        File name/path for writing results
+  -v, --variabel        modifier, used when the input file contains an antibody chain sequence
+
+
 ```
 ## Examples
 
 ### 1. Example using -s SEQUENCE:
 ```
-request: python3 AbScan.py -s EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
+request: python3 abscan_run.py -s EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
 
 answer:
 
@@ -113,7 +110,7 @@ Amino acids frequencies:
 ```
 ### 2. Example using -c CDR:
 ```
-request: python3 AbScan.py -c SDRES
+request: python3 abscan_run.py -c SDRES
 
 answer:
 
@@ -139,7 +136,7 @@ Amino acids frequencies:
 
 ### 3. Example using -c CDR and -f FAMILY:
 ```
-request: python3 AbScan.py -c SDRES -f H2
+request: python3 abscan_run.py -c SDRES -f H2
 
 answer:
 
