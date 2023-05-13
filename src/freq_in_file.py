@@ -28,7 +28,7 @@ def get_freq_in_file_for_cdr(file_input: str, file_output: str) -> None:
                 true_family: str = key
                 true_cdr: str = value[0]['cdr_sequence']
 
-                print(f"Frequencies for CDR '{true_cdr} from {true_family} canonical form writing in output file'")
+                print(f"Frequencies for CDR '{true_cdr} from {true_family} canonical form writing in output file")
 
                 data_write_in_json(true_cdr, true_family, file_output)
         else:
