@@ -29,7 +29,8 @@ def main():
                         help='Search for mutations that do not affect the canonical form',
                         action='store_true')
     parser.add_argument('-i', '--input',
-                        help='File name/path for reading',
+                        help='File name/path for reading. The file must be in csv format, either with one sequence column, or with two sequence and chaine,'
+                             'the possible options for chain are: L1, L2, L3, H1, H2',
                         type=str)
     parser.add_argument('-o', '--output',
                         help='File name/path for writing results',
