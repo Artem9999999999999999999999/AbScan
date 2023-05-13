@@ -1,5 +1,12 @@
 # Tool repository for the identification of structurally critical amino acids in CDR1 and CDR2 antibodies
 
+
++ [Description of the project](#Description-of-the-project)
++ [Repository structure](#Repository-structure)
++ [AbScan](#AbScan)
++ [Examples](#Examples)
++ [Contacts](#Contacts)
+
 ## Description of the project
 The goal of the project is to develop a tool for identifying structurally critical amino acids in CDR1 and CDR2 antibodies.
 
@@ -157,5 +164,5 @@ Amino acids frequencies:
 ```
 
 
-## Контакты
+## Contacts
 manasanartem4@gmail.com
