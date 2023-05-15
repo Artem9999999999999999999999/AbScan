@@ -1,14 +1,15 @@
 import time
+import logging
 from typing import Optional
+
 from build_dict_from_scalop import get_dict_from_scalop
 from build_frame import build_frame
 from itertools import product
-from write_fasta_file import write_fasta_file
-import os
-import logging
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 def generate_combinations(input_string, alphabet):
     possible_replacements = [alphabet] * len(input_string)
@@ -33,20 +34,16 @@ def get_all_mutant(seq: str, chain: str, output_file: str = "mutant_aa_result.tx
     combinations = generate_combinations(seq, ALPHABET)
     logger.debug('List of combinations: %s', combinations)
 
-    list_for_fasta = []
+    logger.info('Working with SCALOP')
+    result: set = set()
     for seq in combinations:
         frame_seq = build_frame(seq, chain)
-        list_for_fasta.append(frame_seq)
-    logger.info('Writing fasta file')
-    write_fasta_file("sequences.fasta", list_for_fasta)
-    mutant_dict = get_dict_from_scalop("sequences.fasta", chain=chain)
+        mutant_dict = get_dict_from_scalop(frame_seq, chain=chain)
 
-    logger.info('Building mutant dict')
-    result: set = set()
-    for mutant_key, mutant_value in mutant_dict.items():
-        mutant_seq = mutant_value[0]['cdr_sequence']
-        if mutant_key == true_family and mutant_seq != true_cdr:
-            result.add(mutant_seq)
+        for mutant_key, mutant_value in mutant_dict.items():
+            mutant_cdr = mutant_value[0]['cdr_sequence']
+            if mutant_key == true_family and mutant_cdr != true_cdr:
+                result.add(mutant_cdr)
 
     logger.info('Writing output file')
     with open(output_file, 'w') as f:
@@ -56,6 +53,5 @@ def get_all_mutant(seq: str, chain: str, output_file: str = "mutant_aa_result.tx
     end_time = time.time()
     logger.info(f'Total time: {end_time - start_time}')
 
-    os.remove("sequences.fasta")
     return None
 
