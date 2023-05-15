@@ -2,7 +2,7 @@ from aligment import find_best_alignment
 from build_dict_from_scalop import get_dict_from_scalop
 from build_frame import build_frame
 from csv_reader import read_csv_file
-from csv_writer import data_write_in_json
+from json_writer import data_write_in_json
 from typing import List, Dict
 
 
