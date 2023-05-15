@@ -2,6 +2,7 @@ import argparse
 from freq_in_file import get_freq_in_file_for_seq, get_freq_in_file_for_cdr
 from freq_in_console import get_freq_from_scalop, get_freq_from_cdr, get_freq_from_scalop_with_chain
 from mutant import get_all_mutant
+from mutant_with_aligment import get_all_mutant as gam
 
 
 def main():
@@ -28,10 +29,6 @@ def main():
     parser.add_argument('-m', '--mutant',
                         help='Search for mutations that do not affect the canonical form',
                         action='store_true')
-    parser.add_argument('-i', '--input',
-                        help='File name/path for reading. The file must be in csv format, either with one sequence column, or with two sequence and chaine,'
-                             'the possible options for chain are: L1, L2, L3, H1, H2',
-                        type=str)
     parser.add_argument('-o', '--output',
                         help='File name/path for writing results',
                         type=str,
@@ -46,29 +43,29 @@ def main():
         parser.print_help()
         return
 
-    if args.sequence and not args.input:
+    if args.sequence[-4:] != '.csv':
         seq_for_scalop = args.sequence
         number = args.number
         get_freq_from_scalop(seq_for_scalop, number)
 
-    if args.cdr and not args.family:
+    if args.cdr[-4:] != '.csv' and not args.family:
         seq = args.cdr
         number = args.number
         get_freq_from_cdr(seq, number_alter=number)
 
-    if args.cdr and args.family:
+    if args.cdr[-4:] != '.csv' and args.family:
         seq = args.cdr
         number = args.number
         chain = args.family
         get_freq_from_scalop_with_chain(seq, chain, number_alter=number)
 
-    if args.input and not args.variabel:
-        input_filename = args.input
+    if args.cdr[-4:] == '.csv' and not args.variabel:
+        input_filename = args.cdr
         output_filename = args.output
         get_freq_in_file_for_cdr(input_filename, output_filename[:-3] + 'json')
 
-    if args.input and args.variabel:
-        input_filename = args.input
+    if args.cdr[-4:] == '.csv' and args.variabel:
+        input_filename = args.cdr
         output_filename = args.output
         get_freq_in_file_for_seq(input_filename, output_filename[:-3] + 'json')
 
@@ -77,6 +74,11 @@ def main():
         output_filename = args.output
         chain = args.family
         get_all_mutant(seq, chain, output_filename[:])
+
+    if args.mutant and args.cdr and not args.family:
+        seq = args.cdr
+        output_filename = args.output
+        gam(seq, output_filename[:])
 
 
 if __name__ == "__main__":
