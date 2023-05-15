@@ -1,12 +1,13 @@
-# Tool repository for the identification of structurally critical amino acids in CDR1 and CDR2 antibodies
-
+# AbScan
 
 + [Description of the project](#Description-of-the-project)
 + [Repository structure](#Repository-structure)
 + [AbScan](#AbScan)
 + [Examples](#Examples)
++ [Example input csv file](#Example-input-csv-file)
 + [Contacts](#Contacts)
 
+# Tool repository for the identification of structurally critical amino acids in CDR1 and CDR2 antibodies
 ## Description of the project
 The goal of the project is to develop a tool for identifying structurally critical amino acids in CDR1 and CDR2 antibodies.
 
@@ -28,31 +29,35 @@ get_data_for_research/ - folder with data extraction code: sabdab(scv) => fasta 
 
 /src - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (AbScan/median_and_frequency_data) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
 ```
-usage: abscan_run.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m] [-i INPUT] [-o OUTPUT] [-v]
+usage: abscan_run.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m]
+                 [-o OUTPUT]
 
-Retrieve the canonical form and/or frequencies of amino acids in an antibody sequence. To work with the amino acid sequence, you must have a local version of SCALOP installed on your device and a PATH
-defined. if the chain parameter is not specified, then the canonical family will be determined using alignment. Otherwise, the family will be defined with SCALOP
+Retrieve the canonical form and/or frequencies of amino acids in an antibody
+sequence. To work with the amino acid sequence, you must have a local version
+of SCALOP installed on your device and a PATH defined. if the chain parameter
+is not specified, then the canonical family will be determined using
+alignment. Otherwise, the family will be defined with SCALOP
 
 options:
   -h, --help            show this help message and exit
   -s SEQUENCE, --sequence SEQUENCE
-                        Amino acid sequence for which the canonical form and frequencies will be obtained
-  -c CDR, --cdr CDR     CDR sequence for which frequency data and its corresponding canonical form will be retrieved
+                        Amino acid sequence for which the canonical form and
+                        frequencies will be obtained
+  -c CDR, --cdr CDR     CDR sequence for which frequency data and its
+                        corresponding canonical form will be retrieved
   -n NUMBER, --number NUMBER
-                        The number of alternative amino acids to display (default=3)
+                        The number of alternative amino acids to display
+                        (default=3)
   -f FAMILY, --family FAMILY
-                        Path to csv file containing one sequence column or two sequence and circuit, the possible options are: L1, L2, L3, H1, H2
-  -m, --mutant          Search for mutations that do not affect the canonical form
-  -i INPUT, --input INPUT
-                        File name/path for reading. The file must be in csv format, either with one sequence column, or with two sequence and chaine,the possible options for chain are: L1, L2, L3, H1,
-                        H2
+                        Path to csv file containing one sequence column or two
+                        sequence and circuit, the possible options are: L1,
+                        L2, L3, H1, H2
+  -m, --mutant          Search for mutations that do not affect the canonical
+                        form
   -o OUTPUT, --output OUTPUT
                         File name/path for writing results
-  -v, --variabel        modifier, used when the input file contains an antibody chain sequence
-
-
 ```
-## Examples
+## Examples usage
 
 ### 1. Example using -s SEQUENCE:
 ```
@@ -159,6 +164,48 @@ Amino acids frequencies:
 
 ```
 
+### 4. Example using -c input_file.csv -o output_filename.json
+
+Сsv files are supported. As an output, a json file that contains information about the frequencies of all amino acids for each position of your CDR. To change the default output filename use the -o argument
+
+```
+request: python3 abscan_run.py -c input_file.csv -o output_filename.json
+
+answer: output_filename.json
+
+```
+
+
+## Example input csv file 
+
+### 1. Example csv file witn chain:
+
+```
+sequence,chain
+SDRES,H2
+QAWDSSTAWV,L3
+KSSHSVLYSSNNKDFFA,L1
+
+```
+
+### 2. Example csv file without chain:
+
+```
+sequence
+SDRES
+QAWDSSTAWV
+KSSHSVLYSSNNKDFFA
+
+```
+
+### 3 Example csv file with sequence:
+
+```
+sequence
+EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
+DIQMTQSPSSLSASLGDRVTITCQASQSISSYLAWYQQKPGQAPNILIYGASRLKTGVPSRFSGSGSGTSFTLTISGLEAEDAGTYYCQQYASVPVTFGQGTKVELKRTVAAPSVFIFPPSVVCLLNNFYPREAKVQWQESVTEQDSKDSTYSLSSTCEVTHQGLSSPVTKSF
+
+```
 
 ## Contacts
 manasanartem4@gmail.com
