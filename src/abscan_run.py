@@ -43,31 +43,36 @@ def main():
         parser.print_help()
         return
 
-    if args.sequence[-4:] != '.csv':
-        seq_for_scalop = args.sequence
-        number = args.number
-        get_freq_from_scalop(seq_for_scalop, number)
+    if args.sequence[-4:]:
+        if args.sequence[-4:] != '.csv':
+            seq_for_scalop = args.sequence
+            number = args.number
+            get_freq_from_scalop(seq_for_scalop, number)
 
-    if args.cdr[-4:] != '.csv' and not args.family:
-        seq = args.cdr
-        number = args.number
-        get_freq_from_cdr(seq, number_alter=number)
+    if args.cdr and not args.family:
+        if args.cdr[-4:] != '.csv':
+            seq = args.cdr
+            number = args.number
+            get_freq_from_cdr(seq, number_alter=number)
 
-    if args.cdr[-4:] != '.csv' and args.family:
-        seq = args.cdr
-        number = args.number
-        chain = args.family
-        get_freq_from_scalop_with_chain(seq, chain, number_alter=number)
+    if args.cdr and args.family:
+        if args.cdr[-4:] != '.csv':
+            seq = args.cdr
+            number = args.number
+            chain = args.family
+            get_freq_from_scalop_with_chain(seq, chain, number_alter=number)
 
-    if args.cdr[-4:] == '.csv' and not args.variabel:
-        input_filename = args.cdr
-        output_filename = args.output
-        get_freq_in_file_for_cdr(input_filename, output_filename[:-3] + 'json')
+    if args.cdr and not args.variabel:
+        if args.cdr[-4:] == '.csv':
+            input_filename = args.cdr
+            output_filename = args.output
+            get_freq_in_file_for_cdr(input_filename, output_filename[:-3] + 'json')
 
-    if args.cdr[-4:] == '.csv' and args.variabel:
-        input_filename = args.cdr
-        output_filename = args.output
-        get_freq_in_file_for_seq(input_filename, output_filename[:-3] + 'json')
+    if args.cdr and args.variabel:
+        if args.cdr[-4:] == '.csv':
+            input_filename = args.cdr
+            output_filename = args.output
+            get_freq_in_file_for_seq(input_filename, output_filename[:-3] + 'json')
 
     if args.mutant and args.cdr and args.family:
         seq = args.cdr
