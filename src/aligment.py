@@ -12,7 +12,7 @@ from Bio.Seq import Seq
 
 
 def find_best_alignment(seq: str) -> int | Any:
-    with open('median_structure_cdr.json') as f:
+    with open('../data_abscan/median_structure_cdr.json') as f:
         data_median = json.load(f)
 
     matrix = substitution_matrices.load("BLOSUM62")
