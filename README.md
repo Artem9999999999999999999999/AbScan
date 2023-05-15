@@ -21,13 +21,15 @@ data/pairwise_align _canonical_form_and_median_structure/ - this folder contains
 data/freq_aa_in_canonical_form/ - here is a json file with all amino acid frequencies for different families and positions
 
 
-/The file "sabdab_summary_all_tsv" from the database "sabdab" contains the latest information for March 6th. The file sabdab_data_pdb_id.csv was obtained by removing all columns except pdb_id and heavy and light chain information from "sabdab_summary_all_tsv", then converted to CSV. Detailed information about the "sabdab_summary_all_tsv" structure can be found at https://opig.stats.ox.ac.uk/webapps/newsabdab/sabdab/about/.
+The file "sabdab_summary_all_tsv" from the database "sabdab" contains the latest information for March 6th. The file sabdab_data_pdb_id.csv was obtained by removing all columns except pdb_id and heavy and light chain information from "sabdab_summary_all_tsv", then converted to CSV. Detailed information about the "sabdab_summary_all_tsv" structure can be found at https://opig.stats.ox.ac.uk/webapps/newsabdab/sabdab/about/.
 
 get_data_for_research/ - folder with data extraction code: sabdab(scv) => fasta => json | txt
 
 ## AbScan
 
-/src - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (AbScan/median_and_frequency_data) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
+src/ - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (data_abscan/) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
+
+The file abscan_run.py is used to run the script.
 ```
 usage: abscan_run.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m]
                  [-o OUTPUT]
