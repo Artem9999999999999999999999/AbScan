@@ -14,12 +14,11 @@ The goal of the project is to develop a tool for identifying structurally critic
 ## Repository structure
 data/ - folder with source data
 
-data/median_structure_cdr/ - information about all CDR centroids
-
 data/pairwise_align _canonical_form_and_median_structure/ - this folder contains all pairwise alignments of CDR sequences extracted from sabdab to CDR centroids. Each fasta file corresponds to one canonical form and its centroid structure
 
-data/freq_aa_in_canonical_form/ - here is a json file with all amino acid frequencies for different families and positions
+data_abscan/freq_aa_in_canonical_form/ - here is a json file with all amino acid frequencies for different families and positions
 
+data_abscan/median_structure_cdr/ - information about all CDR centroids
 
 The file "sabdab_summary_all_tsv" from the database "sabdab" contains the latest information for March 6th. The file sabdab_data_pdb_id.csv was obtained by removing all columns except pdb_id and heavy and light chain information from "sabdab_summary_all_tsv", then converted to CSV. Detailed information about the "sabdab_summary_all_tsv" structure can be found at https://opig.stats.ox.ac.uk/webapps/newsabdab/sabdab/about/.
 
