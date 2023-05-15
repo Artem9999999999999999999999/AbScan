@@ -115,6 +115,9 @@ Amino acids frequencies:
 
 ```
 ### 2. Example using -c CDR:
+
+In the case where the chain argument is not specified, an alignment algorithm is used whose accuracy is 76% compared to the SCALOP results.
+
 ```
 request: python3 abscan_run.py -c SDRES
 
@@ -141,6 +144,9 @@ Amino acids frequencies:
 ```
 
 ### 3. Example using -c CDR and -f FAMILY:
+
+Recommended for use.
+
 ```
 request: python3 abscan_run.py -c SDRES -f H2
 
