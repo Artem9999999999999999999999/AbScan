@@ -171,7 +171,7 @@ Amino acids frequencies:
 
 ```
 
-### 4. Example using -c input_file.csv -o output_filename.json
+### 4. Example using -c input_file.csv [-o output_filename.json]
 
 Сsv files are supported. As an output, a json file that contains information about the frequencies of all amino acids for each position of your CDR. To change the default output filename use the -o argument
 
@@ -181,11 +181,76 @@ request: python3 abscan_run.py -c input_file.csv -o output_filename.json
 answer: output_filename.json
 
 ```
+### 5. Example using -c CDR -f FAMILY -m [-o output_filename.json]
 
+This function determines which substitutions do not change the canonical form. No more than one substitution is made at a time. The output is a json file whose keys are positions and their values are sequences of CDRs of the same canonical form, replaced at that position.
+
+```
+request: python3 abscan_run.py -c SDRES -f H2 -m
+
+answer:
+
+Canonical form for your sequence: H2-5-A
+
+Amino acids frequencies:
++----------+------------+-----------+------------------------------+
+| Position | Amino Acid | Frequency |         Alternatives         |
++----------+------------+-----------+------------------------------+
+|    1     |     S      |   20.19%  |                              |
+|          |            |           | Y(27.6%), W(15.1%), T(12.0%) |
+|    2     |     D      |   4.57%   |                              |
+|          |            |           | S(25.6%), Y(24.7%), W(8.4%)  |
+|    3     |     R      |   4.05%   |                              |
+|          |            |           | G(31.4%), S(28.0%), D(21.0%) |
+|    4     |     E      |   2.53%   |                              |
+|          |            |           |  G(83.4%), D(9.4%), S(1.6%)  |
+|    5     |     S      |   42.46%  |                              |
+|          |            |           | N(12.1%), D(12.0%), T(11.8%) |
++----------+------------+-----------+------------------------------+
+INFO:mutant:Writing fasta file
+INFO:mutant:Building mutant dict
+INFO:mutant:Writing output file
+INFO:mutant:Total time: 1.2449893951416016
+
+output_filename.json
+```
+
+### 6. Example using -c CDR -f FAMILY -m [-o output_filename.json]
+
+the function is similar to the previous one, the difference is the lack of information about the chain. To determine the canonical forms, alignment is used, which is a less accurate method.
+
+```
+request: python3 abscan_run.py -c SDRES -m
+
+answer:
+
+Canonical form for your sequence: L3-5-A
+
+Amino acids frequencies:
++----------+------------+-----------+---------------------------------------------------------------------------+
+| Position | Amino Acid | Frequency |                                Alternatives                               |
++----------+------------+-----------+---------------------------------------------------------------------------+
+|    1     |     S      |    5.7%   |                                                                           |
+|          |            |           |                         Q(88.6%), N(3.3%), W(1.4%)                        |
+|    2*    |     D      |           |                                                                           |
+|          |            |           |      Q(74.3%), V(10.0%), A(9.0%), H(2.9%), I(1.4%), T(1.4%), C(1.0%)      |
+|    3*    |     R      |           |                                                                           |
+|          |            |           | Y(49.0%), F(20.0%), L(16.2%), S(6.7%), P(4.8%), M(2.4%), I(0.5%), Q(0.5%) |
+|    4     |     E      |   79.0%   |                                                                           |
+|          |            |           |                         R(5.7%), Y(5.7%), L(4.3%)                         |
+|    5     |     S      |    3.3%   |                                                                           |
+|          |            |           |                        F(64.3%), T(18.1%), Y(6.2%)                        |
++----------+------------+-----------+---------------------------------------------------------------------------+
+INFO:mutant_with_aligment:Building mutant dict
+INFO:mutant_with_aligment:Writing output file
+INFO:mutant_with_aligment:Total time: 8.164558410644531
+
+output_filename.json
+```
 
 ## Example input csv file 
 
-### 1. Example csv file witn chain:
+### 1. Example csv file with chain:
 
 ```
 sequence,chain
