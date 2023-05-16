@@ -186,7 +186,7 @@ answer: output_filename.json
 This function determines which substitutions do not change the canonical form. No more than one substitution is made at a time. The output is a json file whose keys are positions and their values are sequences of CDRs of the same canonical form, replaced at that position.
 
 ```
-request: python3 abscan_run.py -c SDRES -f H2 -m
+request: python3 abscan_run.py -c SDRES -f H2 -m -o output_filename.json
 
 answer:
 
