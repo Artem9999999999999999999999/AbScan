@@ -220,7 +220,7 @@ output_filename.json
 the function is similar to the previous one, the difference is the lack of information about the chain. To determine the canonical forms, alignment is used, which is a less accurate method.
 
 ```
-request: python3 abscan_run.py -c SDRES -m
+request: python3 abscan_run.py -c SDRES -m -o output_filename.json
 
 answer:
 
