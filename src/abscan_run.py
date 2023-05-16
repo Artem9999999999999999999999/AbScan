@@ -2,7 +2,7 @@ import argparse
 from freq_in_file import get_freq_in_file
 from freq_in_console import get_freq_from_scalop, get_freq_from_cdr, get_freq_from_scalop_with_chain
 from mutant import get_all_mutant
-from mutant_with_aligment import get_all_mutant as gam
+from mutant_with_aligment import get_all_mutant_with_aligment
 
 
 def main():
@@ -32,7 +32,7 @@ def main():
     parser.add_argument('-o', '--output',
                         help='File name/path for writing results',
                         type=str,
-                        default='result.txt')
+                        default='result.json')
 
     args = parser.parse_args()
 
@@ -63,18 +63,18 @@ def main():
         if args.cdr[-4:] == '.csv':
             input_filename = args.cdr
             output_filename = args.output
-            get_freq_in_file(input_filename, output_filename[:-3] + 'json')
+            get_freq_in_file(input_filename, output_filename)
 
     if args.mutant and args.cdr and args.family:
         seq = args.cdr
         output_filename = args.output
         chain = args.family
-        get_all_mutant(seq, chain, output_filename[:])
+        get_all_mutant(seq, chain, output_filename)
 
     if args.mutant and args.cdr and not args.family:
         seq = args.cdr
         output_filename = args.output
-        gam(seq, output_filename[:])
+        get_all_mutant_with_aligment(seq, output_filename)
 
 
 if __name__ == "__main__":
