@@ -2,7 +2,7 @@
 
 + [Description of the project](#Description-of-the-project)
 + [Repository structure](#Repository-structure)
-+ [abscan_run](#abscan_run)
++ [abscan run](#abscan-run)
 + [Examples usage](#Examples-usage)
 + [Example input csv file](#Example-input-csv-file)
 + [Contacts](#Contacts)
