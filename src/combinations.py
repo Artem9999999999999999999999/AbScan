@@ -1,4 +1,7 @@
-def get_combinations_fast(seq):
+from typing import List
+
+
+def get_combinations_fast(seq: str) -> List[str]:
     alphabet = "ACDEFGHIKLMNPQRSTVWY" # 20 стандартных аминокислот
     valid_combos = [] # список для хранения допустимых комбинаций
 
