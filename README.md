@@ -2,7 +2,7 @@
 
 + [Description of the project](#Description-of-the-project)
 + [Repository structure](#Repository-structure)
-+ [AbScan](#AbScan)
++ [abscan_run.py](#abscan_run.py)
 + [Examples](#Examples)
 + [Example input csv file](#Example-input-csv-file)
 + [Contacts](#Contacts)
@@ -24,7 +24,7 @@ The file "sabdab_summary_all_tsv" from the database "sabdab" contains the latest
 
 get_data_for_research/ - folder with data extraction code: sabdab(scv) => fasta => json | txt
 
-## AbScan
+## abscan_run.py
 
 src/ - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (data_abscan/) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
 
