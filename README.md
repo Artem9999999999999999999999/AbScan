@@ -2,8 +2,8 @@
 
 + [Description of the project](#Description-of-the-project)
 + [Repository structure](#Repository-structure)
-+ [abscan_run.py](#abscan_run.py)
-+ [Examples](#Examples)
++ [abscan_run](#abscan_run)
++ [Examples usage](#Examples-usage)
 + [Example input csv file](#Example-input-csv-file)
 + [Contacts](#Contacts)
 
