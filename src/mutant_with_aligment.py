@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_all_mutant_with_aligment(seq: str, output_file: str = "mutant_aa_result.txt") -> Optional[None]:
+def get_all_mutant_with_aligment(seq: str, output_file: str = "result.json") -> Optional[None]:
     start_time = time.time()
     true_cdr = seq
     true_family = find_best_alignment(seq)
