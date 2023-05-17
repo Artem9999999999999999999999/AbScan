@@ -255,7 +255,7 @@ output_filename.json
 
 ## Example input csv file 
 
-Sample files are stored in the data_abscan folder
+Sample files are stored in the /File examples folder
 
 ### 1. Example csv file with chain:
 
