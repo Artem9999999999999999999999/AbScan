@@ -16,26 +16,26 @@ The goal of the project is to develop a tool for identifying structurally critic
 
 Download the zip archive.
 
-To start, from /src, run the command:  **chmod +x AbScan**
+To start, from **/src**, run the command:  **chmod +x AbScan**
 
 Enjoy
 
 ## Repository structure
-data/ - folder with source data
+**data/** - folder with source data
 
-data/pairwise_align _canonical_form_and_median_structure/ - this folder contains all pairwise alignments of CDR sequences extracted from sabdab to CDR centroids. Each fasta file corresponds to one canonical form and its centroid structure
+**data/pairwise_align _canonical_form_and_median_structure/** - this folder contains all pairwise alignments of CDR sequences extracted from sabdab to CDR centroids. Each fasta file corresponds to one canonical form and its centroid structure
 
-data_abscan/freq_aa_in_canonical_form/ - here is a json file with all amino acid frequencies for different families and positions
+**data_abscan/freq_aa_in_canonical_form/** - here is a json file with all amino acid frequencies for different families and positions
 
-data_abscan/median_structure_cdr/ - information about all CDR centroids
+**data_abscan/median_structure_cdr/** - information about all CDR centroids
 
-The file "sabdab_summary_all_tsv" from the database "sabdab" contains the latest information for March 6th. The file sabdab_data_pdb_id.csv was obtained by removing all columns except pdb_id and heavy and light chain information from "sabdab_summary_all_tsv", then converted to CSV. Detailed information about the "sabdab_summary_all_tsv" structure can be found at https://opig.stats.ox.ac.uk/webapps/newsabdab/sabdab/about/.
+The file **"sabdab_summary_all_tsv"** from the database "sabdab" contains the latest information for March 6th. The file sabdab_data_pdb_id.csv was obtained by removing all columns except pdb_id and heavy and light chain information from **"sabdab_summary_all_tsv"**, then converted to CSV. Detailed information about the **"sabdab_summary_all_tsv"** structure can be found at https://opig.stats.ox.ac.uk/webapps/newsabdab/sabdab/about/.
 
-get_data_for_research/ - folder with data extraction code: sabdab(scv) => fasta => json | txt
+**get_data_for_research/** - folder with data extraction code: sabdab(scv) => fasta => json | txt
 
 ## AbScan run
 
-src/AbScan - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (data_abscan/) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
+**src/AbScan** - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (data_abscan/) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
 
 The file AbScan is used to run the script.
 ```
@@ -263,7 +263,7 @@ output_filename.json
 
 ## Example input csv file 
 
-Sample files are stored in the file_examples/ folder
+Sample files are stored in the **file_examples/** folder
 
 ### 1. Example csv file with chain:
 
