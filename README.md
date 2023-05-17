@@ -5,7 +5,7 @@
 + [Repository structure](#Repository-structure)
 + [AbScan run](#AbScan-run)
 + [Examples usage](#Examples-usage)
-+ [Example input csv file](#Example-input-csv-file)
++ [Examples input csv file](#Examples-input-csv-file)
 + [Contacts](#Contacts)
 
 # Tool repository for the identification of structurally critical amino acids in CDR1 and CDR2 antibodies
@@ -261,7 +261,7 @@ INFO:mutant_with_aligment:Total time: 8.164558410644531
 output_filename.json
 ```
 
-## Example input csv file 
+## Examples input csv file 
 
 Sample files are stored in the **file_examples/** folder
 
