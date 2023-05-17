@@ -1,6 +1,7 @@
 # AbScan
 
 + [Description of the project](#Description-of-the-project)
++ [Installation instructions](#Installation-instructions)
 + [Repository structure](#Repository-structure)
 + [AbScan run](#AbScan-run)
 + [Examples usage](#Examples-usage)
@@ -10,6 +11,10 @@
 # Tool repository for the identification of structurally critical amino acids in CDR1 and CDR2 antibodies
 ## Description of the project
 The goal of the project is to develop a tool for identifying structurally critical amino acids in CDR1 and CDR2 antibodies.
+
+## Installation instructions
+
+Download the zip archive. To start, use src/AbScan.py
 
 ## Repository structure
 data/ - folder with source data
