@@ -149,7 +149,7 @@ Amino acids frequencies:
 
 ### 3. Example using -c CDR and -f FAMILY:
 
-Recommended for use.
+##### Recommended for use.
 
 ```
 request: python3 AbScan.py -c SDRES -f H2
@@ -189,6 +189,9 @@ answer: output_filename.json
 ### 5. Example using -c CDR -f FAMILY -m [-o output_filename.json]
 
 This function determines which substitutions do not change the canonical form. No more than one substitution is made at a time. The output is a json file whose keys are positions and their values are sequences of CDRs of the same canonical form, replaced at that position.
+
+
+##### Recommended for use.
 
 ```
 request: python3 AbScan.py -c SDRES -f H2 -m -o output_filename.json
