@@ -2,7 +2,7 @@
 
 + [Description of the project](#Description-of-the-project)
 + [Repository structure](#Repository-structure)
-+ [abscan run](#abscan-run)
++ [AbScan run](#AbScan-run)
 + [Examples usage](#Examples-usage)
 + [Example input csv file](#Example-input-csv-file)
 + [Contacts](#Contacts)
@@ -24,13 +24,13 @@ The file "sabdab_summary_all_tsv" from the database "sabdab" contains the latest
 
 get_data_for_research/ - folder with data extraction code: sabdab(scv) => fasta => json | txt
 
-## abscan run
+## AbScan run
 
-src/ - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (data_abscan/) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
+src/AbScan.py - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (data_abscan/) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
 
 The file abscan_run.py is used to run the script.
 ```
-usage: abscan_run.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m]
+usage: AbScan.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m]
                  [-o OUTPUT]
 
 Retrieve the canonical form and/or frequencies of amino acids in an antibody
@@ -62,7 +62,7 @@ options:
 
 ### 1. Example using -s SEQUENCE:
 ```
-request: python3 abscan_run.py -s EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
+request: python3 AbScan.py -s EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
 
 answer:
 
@@ -118,7 +118,7 @@ Amino acids frequencies:
 In the case where the chain argument is not specified, an alignment algorithm is used whose accuracy is 76% compared to the SCALOP results.
 
 ```
-request: python3 abscan_run.py -c SDRES
+request: python3 AbScan.py -c SDRES
 
 answer:
 
@@ -147,7 +147,7 @@ Amino acids frequencies:
 Recommended for use.
 
 ```
-request: python3 abscan_run.py -c SDRES -f H2
+request: python3 AbScan.py -c SDRES -f H2
 
 answer:
 
@@ -176,7 +176,7 @@ Amino acids frequencies:
 Сsv files are supported. As an output, a json file that contains information about the frequencies of all amino acids for each position of your CDR. To change the default output filename use the -o argument
 
 ```
-request: python3 abscan_run.py -c input_file.csv -o output_filename.json
+request: python3 AbScan.py -c input_file.csv -o output_filename.json
 
 answer: output_filename.json
 
@@ -186,7 +186,7 @@ answer: output_filename.json
 This function determines which substitutions do not change the canonical form. No more than one substitution is made at a time. The output is a json file whose keys are positions and their values are sequences of CDRs of the same canonical form, replaced at that position.
 
 ```
-request: python3 abscan_run.py -c SDRES -f H2 -m -o output_filename.json
+request: python3 AbScan.py -c SDRES -f H2 -m -o output_filename.json
 
 answer:
 
@@ -220,7 +220,7 @@ output_filename.json
 the function is similar to the previous one, the difference is the lack of information about the chain. To determine the canonical forms, alignment is used, which is a less accurate method.
 
 ```
-request: python3 abscan_run.py -c SDRES -m -o output_filename.json
+request: python3 AbScan.py -c SDRES -m -o output_filename.json
 
 answer:
 
