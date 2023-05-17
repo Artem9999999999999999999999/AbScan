@@ -35,8 +35,8 @@ src/AbScan.py - this scripts allows you to get information about the canonical f
 
 The file AbScan.py is used to run the script.
 ```
-usage: AbScan.py [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m]
-                 [-o OUTPUT]
+usage: AbScan [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m]
+              [-o OUTPUT]
 
 Retrieve the canonical form and/or frequencies of amino acids in an antibody
 sequence. To work with the amino acid sequence, you must have a local version
@@ -61,7 +61,8 @@ options:
   -m, --mutant          Search for mutations that do not affect the canonical
                         form
   -o OUTPUT, --output OUTPUT
-                        File name/path for writing results
+                        File name/path for writing results. If not specified,
+                        the default path is "output_result/result.json"
 ```
 ## Examples usage
 
