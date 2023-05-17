@@ -1,4 +1,6 @@
 import argparse
+import os
+
 from freq_in_file import get_freq_in_file
 from freq_in_console import get_freq_from_scalop, get_freq_from_cdr, get_freq_from_scalop_with_chain
 from mutant import get_all_mutant
@@ -30,9 +32,10 @@ def main():
                         help='Search for mutations that do not affect the canonical form',
                         action='store_true')
     parser.add_argument('-o', '--output',
-                        help='File name/path for writing results',
+                        help='File name/path for writing results. If not specified, the default path is '
+                             '"output_result/result.json"',
                         type=str,
-                        default='result.json')
+                        default=os.path.join("..", "output_result", "result.json"))
 
     args = parser.parse_args()
 
@@ -62,16 +65,25 @@ def main():
     if args.cdr:
         if args.cdr[-4:] == '.csv':
             input_filename = args.cdr
+            output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "output_result")
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
             output_filename = args.output
             get_freq_in_file(input_filename, output_filename)
 
     if args.mutant and args.cdr and args.family:
+        output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "output_result")
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
         seq = args.cdr
         output_filename = args.output
         chain = args.family
         get_all_mutant(seq, chain, output_filename)
 
     if args.mutant and args.cdr and not args.family:
+        output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "output_result")
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
         seq = args.cdr
         output_filename = args.output
         get_all_mutant_with_aligment(seq, output_filename)
