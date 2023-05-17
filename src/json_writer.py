@@ -1,5 +1,8 @@
 import json
-from pathlib import Path
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def data_write_in_json(cdr: str, family: str, file_output: str) -> None:
@@ -15,5 +18,4 @@ def data_write_in_json(cdr: str, family: str, file_output: str) -> None:
     with open(file_output, 'a') as f:
         json.dump(data_to_write, f, indent=4)
         f.write('\n')
-        print(f"Data for {family} has been written to {file_output} file.")
-        print()
+        logger.info(f"Data for {family} has been written to {file_output} file.\n")
