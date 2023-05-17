@@ -21,9 +21,9 @@ To start, from **/src**, run the command:  **chmod +x AbScan**
 Enjoy
 
 ## Repository structure
-**data/** - folder with source data
+**/data_recearch** - folder with source data
 
-**data/pairwise_align _canonical_form_and_median_structure/** - this folder contains all pairwise alignments of CDR sequences extracted from sabdab to CDR centroids. Each fasta file corresponds to one canonical form and its centroid structure
+**/data_recearch/pairwise_align _canonical_form_and_median_structure/** - this folder contains all pairwise alignments of CDR sequences extracted from sabdab to CDR centroids. Each fasta file corresponds to one canonical form and its centroid structure
 
 **data_abscan/freq_aa_in_canonical_form/** - here is a json file with all amino acid frequencies for different families and positions
 
