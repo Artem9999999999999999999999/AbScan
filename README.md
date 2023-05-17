@@ -220,7 +220,7 @@ INFO:mutant:Total time: 1.2449893951416016
 output_filename.json
 ```
 
-### 6. Example using -c CDR -f FAMILY -m [-o output_filename.json]
+### 6. Example using -c CDR -m [-o output_filename.json]
 
 the function is similar to the previous one, the difference is the lack of information about the chain. To determine the canonical forms, alignment is used, which is a less accurate method.
 
