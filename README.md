@@ -263,7 +263,7 @@ output_filename.json
 
 ## Example input csv file 
 
-Sample files are stored in the /File examples folder
+Sample files are stored in the file_examples/ folder
 
 ### 1. Example csv file with chain:
 
