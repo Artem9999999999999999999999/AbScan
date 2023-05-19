@@ -39,42 +39,65 @@ The file **"sabdab_summary_all_tsv"** from the database "sabdab" contains the la
 
 The file AbScan is used to run the script.
 ```
-usage: AbScan [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m]
-              [-p [POSITIONS ...]] [-o OUTPUT]
+usage: AbScan [-h] [-c CDR] [-n NUMBER] [-f FAMILY] [-m] [-p [POSITIONS ...]] [-o OUTPUT]
 
-Retrieve the canonical form and/or frequencies of amino acids in an antibody
-sequence. To work with the amino acid sequence, you must have a local version
-of SCALOP installed on your device and a PATH defined. if the chain parameter
-is not specified, then the canonical family will be determined using
-alignment. Otherwise, the family will be defined with SCALOP
+Retrieve the canonical form and/or frequencies of amino acids in an antibody sequence. To work with the amino acid sequence, you must have a local version of SCALOP installed on your device and a PATH
+defined. if the chain parameter is not specified, then the canonical family will be determined using alignment. Otherwise, the family will be defined with SCALOP
 
 options:
   -h, --help            show this help message and exit
-  -s SEQUENCE, --sequence SEQUENCE
-                        Amino acid sequence for which the canonical form and
-                        frequencies will be obtained
-  -c CDR, --cdr CDR     CDR sequence for which frequency data and its
-                        corresponding canonical form will be retrieved
+  -c CDR, --cdr CDR     CDR sequence for which frequency data and its corresponding canonical form will be retrieved
   -n NUMBER, --number NUMBER
-                        The number of alternative amino acids to display
-                        (default=3)
+                        The number of alternative amino acids to display (default=3)
   -f FAMILY, --family FAMILY
-                        Path to csv file containing one sequence column or two
-                        sequence and circuit, the possible options are: L1,
-                        L2, L3, H1, H2
-  -m, --mutant          Search for mutations that do not affect the canonical
-                        form
+                        Path to csv file containing one sequence column or two sequence and circuit, the possible options are: L1, L2, L3, H1, H2
+  -m, --mutant          Search for mutations that do not affect the canonical form
   -p [POSITIONS ...], --positions [POSITIONS ...]
-                        List of positions that should not undergo mutations
+                        List of positions that should not undergo mutations (1-20)
   -o OUTPUT, --output OUTPUT
-                        File name/path for writing results. If not specified,
-                        the default path is "output_result/result.json"
+                        File name/path for writing results. If not specified, the default path is "output_result/result.json"
+
 ```
 ## Examples usage
 
-### 1. Example using -s SEQUENCE:
+
+### 1. Example using -c CDR and -f FAMILY:
+
+This function accepts a cdr sequence, a chain indication and a loop number
+
+##### Recommended for use.
+
 ```
-request: ./AbScan -s EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
+request: ./AbScan -c SDRES -f H2
+
+answer:
+
+Canonical form for your sequence: H2-5-A
+
+Amino acids frequencies:
++----------+------------+-----------+------------------------------+
+| Position | Amino Acid | Frequency |         Alternatives         |
++----------+------------+-----------+------------------------------+
+|    1     |     S      |   20.19%  |                              |
+|          |            |           | Y(27.6%), W(15.1%), T(12.0%) |
+|    2     |     D      |   4.57%   |                              |
+|          |            |           | S(25.6%), Y(24.7%), W(8.4%)  |
+|    3     |     R      |   4.05%   |                              |
+|          |            |           | G(31.4%), S(28.0%), D(21.0%) |
+|    4     |     E      |   2.53%   |                              |
+|          |            |           |  G(83.4%), D(9.4%), S(1.6%)  |
+|    5     |     S      |   42.46%  |                              |
+|          |            |           | N(12.1%), D(12.0%), T(11.8%) |
++----------+------------+-----------+------------------------------+
+
+```
+
+### 2. Example using -c SEQUENCE:
+
+This function can accept antibody chains
+
+```
+request: ./AbScan -c EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
 
 answer:
 
@@ -125,7 +148,7 @@ Amino acids frequencies:
 +----------+------------+-----------+------------------------------+
 
 ```
-### 2. Example using -c CDR:
+### 3. Example using -c CDR:
 
 In the case where the chain argument is not specified, an alignment algorithm is used whose accuracy is 76% compared to the SCALOP results.
 
@@ -151,35 +174,6 @@ Amino acids frequencies:
 |    5     |     S      |    3.3%   |                                                                           |
 |          |            |           |                        F(64.3%), T(18.1%), Y(6.2%)                        |
 +----------+------------+-----------+---------------------------------------------------------------------------+
-
-```
-
-### 3. Example using -c CDR and -f FAMILY:
-
-##### Recommended for use.
-
-```
-request: ./AbScan -c SDRES -f H2
-
-answer:
-
-Canonical form for your sequence: H2-5-A
-
-Amino acids frequencies:
-+----------+------------+-----------+------------------------------+
-| Position | Amino Acid | Frequency |         Alternatives         |
-+----------+------------+-----------+------------------------------+
-|    1     |     S      |   20.19%  |                              |
-|          |            |           | Y(27.6%), W(15.1%), T(12.0%) |
-|    2     |     D      |   4.57%   |                              |
-|          |            |           | S(25.6%), Y(24.7%), W(8.4%)  |
-|    3     |     R      |   4.05%   |                              |
-|          |            |           | G(31.4%), S(28.0%), D(21.0%) |
-|    4     |     E      |   2.53%   |                              |
-|          |            |           |  G(83.4%), D(9.4%), S(1.6%)  |
-|    5     |     S      |   42.46%  |                              |
-|          |            |           | N(12.1%), D(12.0%), T(11.8%) |
-+----------+------------+-----------+------------------------------+
 
 ```
 
@@ -315,19 +309,19 @@ KSSHSVLYSSNNKDFFA,L1
 ### 2. Example csv file without chain:
 
 ```
-sequence,
-SDRES,
-QAWDSSTAWV,
-KSSHSVLYSSNNKDFFA,
+sequence
+SDRES
+QAWDSSTAWV
+KSSHSVLYSSNNKDFFA
 
 ```
 
 ### 3 Example csv file with sequence:
 
 ```
-sequence,
-EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK,
-DIQMTQSPSSLSASLGDRVTITCQASQSISSYLAWYQQKPGQAPNILIYGASRLKTGVPSRFSGSGSGTSFTLTISGLEAEDAGTYYCQQYASVPVTFGQGTKVELKRTVAAPSVFIFPPSVVCLLNNFYPREAKVQWQESVTEQDSKDSTYSLSSTCEVTHQGLSSPVTKSF,
+sequence
+EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
+DIQMTQSPSSLSASLGDRVTITCQASQSISSYLAWYQQKPGQAPNILIYGASRLKTGVPSRFSGSGSGTSFTLTISGLEAEDAGTYYCQQYASVPVTFGQGTKVELKRTVAAPSVFIFPPSVVCLLNNFYPREAKVQWQESVTEQDSKDSTYSLSSTCEVTHQGLSSPVTKSF
 
 ```
 
