@@ -40,7 +40,7 @@ The file **"sabdab_summary_all_tsv"** from the database "sabdab" contains the la
 The file AbScan is used to run the script.
 ```
 usage: AbScan [-h] [-s SEQUENCE] [-c CDR] [-n NUMBER] [-f FAMILY] [-m]
-              [-o OUTPUT]
+              [-p [POSITIONS ...]] [-o OUTPUT]
 
 Retrieve the canonical form and/or frequencies of amino acids in an antibody
 sequence. To work with the amino acid sequence, you must have a local version
@@ -64,6 +64,9 @@ options:
                         L2, L3, H1, H2
   -m, --mutant          Search for mutations that do not affect the canonical
                         form
+  -p [POSITIONS ...], --positions [POSITIONS ...]
+                        List of positions that should not undergo mutations
+                        (1-20)
   -o OUTPUT, --output OUTPUT
                         File name/path for writing results. If not specified,
                         the default path is "output_result/result.json"
@@ -260,6 +263,41 @@ INFO:mutant_with_aligment:Total time: 8.164558410644531
 
 output_filename.json
 ```
+
+### 7. Example using -c CDR -m -p POSITIONS [-o output_filename.json]
+
+This function allows you not to mutate amino acids in selected positions
+
+```
+request: ./AbScan -c SDRES -f H2 -m -p 2 3 5 output_filename.json
+
+answer:
+
+Canonical form for your sequence: H2-5-A
+
+Amino acids frequencies:
++----------+------------+-----------+------------------------------+
+| Position | Amino Acid | Frequency |         Alternatives         |
++----------+------------+-----------+------------------------------+
+|    1     |     S      |   20.19%  |                              |
+|          |            |           | Y(27.6%), W(15.1%), T(12.0%) |
+|    2     |     D      |   4.57%   |                              |
+|          |            |           | S(25.6%), Y(24.7%), W(8.4%)  |
+|    3     |     R      |   4.05%   |                              |
+|          |            |           | G(31.4%), S(28.0%), D(21.0%) |
+|    4     |     E      |   2.53%   |                              |
+|          |            |           |  G(83.4%), D(9.4%), S(1.6%)  |
+|    5     |     S      |   42.46%  |                              |
+|          |            |           | N(12.1%), D(12.0%), T(11.8%) |
++----------+------------+-----------+------------------------------+
+INFO:mutant:Writing fasta file
+INFO:mutant:Building mutant dict
+INFO:mutant:Writing output file
+INFO:mutant:Total time: 0.9216213226318359
+
+output_filename.json
+```
+
 
 ## Examples input csv file 
 
