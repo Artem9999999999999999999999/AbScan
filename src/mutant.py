@@ -1,10 +1,10 @@
 import json
-from typing import Optional
+from typing import Optional, List
 import time
 import os
 import logging
 
-from combinations import get_combinations_fast
+from combinations import get_combinations_fast, get_combinations_with_exclude
 from positions_mutant_aa import find_mutation_position
 from build_dict_from_scalop import get_dict_from_scalop
 from build_frame import build_frame
@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_all_mutant(seq: str, chain: str, output_file: str = "mutant_aa_result.json") -> Optional[None]:
+def get_all_mutant(seq: str, chain: str, exclude_positions: List[int], output_file: str = "mutant_aa_result.json") -> Optional[None]:
     start_time = time.time()
     true_family = None
     true_cdr = None
@@ -26,7 +26,10 @@ def get_all_mutant(seq: str, chain: str, output_file: str = "mutant_aa_result.js
         true_cdr = value[0]['cdr_sequence']
         break
 
-    combinations = get_combinations_fast(seq)
+    if exclude_positions:
+        combinations = get_combinations_with_exclude(seq, exclude_positions)
+    else:
+        combinations = get_combinations_fast(seq)
     logger.debug('List of combinations: %s', combinations)
 
     list_for_fasta = []
