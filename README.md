@@ -66,7 +66,6 @@ options:
                         form
   -p [POSITIONS ...], --positions [POSITIONS ...]
                         List of positions that should not undergo mutations
-                        (1-20)
   -o OUTPUT, --output OUTPUT
                         File name/path for writing results. If not specified,
                         the default path is "output_result/result.json"
