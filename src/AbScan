@@ -16,10 +16,6 @@ def main():
                     'with the amino acid sequence, you must have a local version of SCALOP installed on your device '
                     'and a PATH defined. if the chain parameter is not specified, then the canonical family will be '
                     'determined using alignment. Otherwise, the family will be defined with SCALOP')
-    parser.add_argument('-s', '--sequence',
-                        help='Amino acid sequence for which the canonical form and frequencies will be obtained',
-                        type=str,
-                        default='d')
     parser.add_argument('-c', '--cdr',
                         help='CDR sequence for which frequency data and its corresponding canonical form will be '
                              'retrieved',
@@ -35,7 +31,7 @@ def main():
                         help='Search for mutations that do not affect the canonical form',
                         action='store_true')
     parser.add_argument('-p', '--positions',
-                        help='List of positions that should not undergo mutations ',
+                        help='List of positions that should not undergo mutations (1-20)',
                         nargs='*',
                         type=int)
     parser.add_argument('-o', '--output',
@@ -46,21 +42,18 @@ def main():
 
     args = parser.parse_args()
 
-    if not args.sequence and not args.cdr:
+    if not args.cdr:
         parser.print_help()
         return
-
-    if args.sequence[-4:]:
-        if args.sequence[-4:] != '.csv':
-            seq_for_scalop = args.sequence
-            number = args.number
-            get_freq_from_scalop(seq_for_scalop, number)
 
     if args.cdr and not args.family:
         if args.cdr[-4:] != '.csv':
             seq = args.cdr
             number = args.number
-            get_freq_from_cdr(seq, number_alter=number)
+            if len(seq) > 20:
+                get_freq_from_scalop(seq, number_alter=number)
+            else:
+                get_freq_from_cdr(seq, number_alter=number)
 
     if args.cdr and args.family:
         if args.cdr[-4:] != '.csv':
