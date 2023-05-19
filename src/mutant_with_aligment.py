@@ -1,10 +1,10 @@
 import json
 import time
 import logging
-from typing import Optional
+from typing import Optional, List
 
 from positions_mutant_aa import find_mutation_position
-from combinations import get_combinations_fast
+from combinations import get_combinations_fast, get_combinations_with_exclude
 from aligment import find_best_alignment
 
 
@@ -12,12 +12,15 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_all_mutant_with_aligment(seq: str, output_file: str = "result.json") -> Optional[None]:
+def get_all_mutant_with_aligment(seq: str, exclude_positions: List[int], output_file: str = "result.json") -> Optional[None]:
     start_time = time.time()
     true_cdr = seq
     true_family = find_best_alignment(seq)
 
-    combinations = get_combinations_fast(seq)
+    if exclude_positions:
+        combinations = get_combinations_with_exclude(seq, exclude_positions)
+    else:
+        combinations = get_combinations_fast(seq)
     logger.debug('List of combinations: %s', combinations)
 
     logger.info('Building mutant dict')
