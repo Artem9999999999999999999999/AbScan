@@ -9,7 +9,7 @@ from aligment import find_best_alignment
 
 
 def get_freq_from_cdr(seq: str, family: str = "NA", number_alter: int = 3) -> Optional[None]:
-    with open('../data_abscan/freq_aa_in_canonical_form.json') as f:
+    with open('../data_absight/freq_aa_in_canonical_form.json') as f:
         data = json.load(f)
 
     if family == "NA":
