@@ -1,9 +1,9 @@
-# AbScan
+# AbSight
 
 + [Description of the project](#Description-of-the-project)
 + [Installation instructions](#Installation-instructions)
 + [Repository structure](#Repository-structure)
-+ [AbScan run](#AbScan-run)
++ [AbSight run](#AbSight-run)
 + [Examples usage](#Examples-usage)
 + [Examples input csv file](#Examples-input-csv-file)
 + [Contacts](#Contacts)
@@ -16,7 +16,7 @@ The goal of the project is to develop a tool for identifying structurally critic
 
 Download the zip archive.
 
-To start, from **/src**, run the command:  **chmod +x AbScan**
+To start, from **/src**, run the command:  **chmod +x AbSight**
 
 Enjoy
 
@@ -33,13 +33,13 @@ The file **"sabdab_summary_all_tsv"** from the database "sabdab" contains the la
 
 **get_data_for_research/** - folder with data extraction code: sabdab(scv) => fasta => json | txt
 
-## AbScan run
+## AbSight run
 
-**src/AbScan** - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (**data_abscan/**) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
+**src/AbSight** - this scripts allows you to get information about the canonical form and frequency of amino acids present in antibodies. For this, files with data on the frequency of amino acids in canonical forms are used (**data_absight/**) and the local version of SCALOP, which must be installed on the computer and added to the PATH variable.
 
-The file AbScan is used to run the script.
+The file AbSight is used to run the script.
 ```
-usage: AbScan [-h] [-c CDR] [-n NUMBER] [-f FAMILY] [-m] [-p [POSITIONS ...]] [-o OUTPUT]
+usage: AbSight [-h] [-c CDR] [-n NUMBER] [-f FAMILY] [-m] [-p [POSITIONS ...]] [-o OUTPUT]
 
 Retrieve the canonical form and/or frequencies of amino acids in an antibody sequence. To work with the amino acid sequence, you must have a local version of SCALOP installed on your device and a PATH
 defined. if the chain parameter is not specified, then the canonical family will be determined using alignment. Otherwise, the family will be defined with SCALOP
@@ -68,7 +68,7 @@ This function accepts a cdr sequence, a chain indication and a loop number
 ##### Recommended for use.
 
 ```
-request: ./AbScan -c SDRES -f H2
+request: ./AbSight -c SDRES -f H2
 
 answer:
 
@@ -97,7 +97,7 @@ Amino acids frequencies:
 This function can accept antibody chains
 
 ```
-request: ./AbScan -c EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
+request: ./AbSight -c EVQLVQPGAELRNSGASVKVSCKASGYRFTSYYIDWVRQAPGQGLEWMGRIDPEDGGTKYAQKFQGRVTFTADTSTSTAYVELSSLRSEDTAVYYCARNEWETVVVGDLMYEYEYWGQGTQVTVSSASTKGPSVFPLAPALGCLVKDYFPEPVTVSGVHTFPAVLQSSGLYSLSSVVNVNHK
 
 answer:
 
@@ -153,7 +153,7 @@ Amino acids frequencies:
 In the case where the chain argument is not specified, an alignment algorithm is used whose accuracy is 76% compared to the SCALOP results.
 
 ```
-request: ./AbScan -c SDRES
+request: ./AbSight -c SDRES
 
 answer:
 
@@ -182,7 +182,7 @@ Amino acids frequencies:
 Сsv files are supported. As an output, a json file that contains information about the frequencies of all amino acids for each position of your CDR. To change the default output filename use the -o argument
 
 ```
-request: ./AbScan -c input_file.csv -o output_filename.json
+request: ./AbSight -c input_file.csv -o output_filename.json
 
 answer: output_filename.json
 
@@ -195,7 +195,7 @@ This function determines which substitutions do not change the canonical form. N
 ##### Recommended for use.
 
 ```
-request: ./AbScan -c SDRES -f H2 -m -o output_filename.json
+request: ./AbSight -c SDRES -f H2 -m -o output_filename.json
 
 answer:
 
@@ -229,7 +229,7 @@ output_filename.json
 the function is similar to the previous one, the difference is the lack of information about the chain. To determine the canonical forms, alignment is used, which is a less accurate method.
 
 ```
-request: ./AbScan -c SDRES -m -o output_filename.json
+request: ./AbSight -c SDRES -m -o output_filename.json
 
 answer:
 
@@ -262,7 +262,7 @@ output_filename.json
 This function allows you not to mutate amino acids in selected positions
 
 ```
-request: ./AbScan -c SDRES -f H2 -m -p 2 3 5 output_filename.json
+request: ./AbSight -c SDRES -f H2 -m -p 2 3 5 output_filename.json
 
 answer:
 
