@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 
 def data_write_in_json(cdr: str, family: str, file_output: str) -> None:
-    with open('../data_abscan/freq_aa_in_canonical_form.json', 'r') as f:
+    with open('../data_absight/freq_aa_in_canonical_form.json', 'r') as f:
         data = json.load(f)
         
     data_for_true_family = data.get(family, [])
